@@ -1,7 +1,7 @@
 package org.sopt.ticketbay.global.exception;
 
 import lombok.Getter;
-import org.sopt.ticketbay.global.response.ErrorCode;
+import org.sopt.ticketbay.global.response.code.ErrorCode;
 
 @Getter
 public class BusinessException extends RuntimeException {

@@ -1,6 +1,8 @@
-package org.sopt.ticketbay.global.response;
+package org.sopt.ticketbay.global.response.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.sopt.ticketbay.global.response.code.ErrorCode;
+import org.sopt.ticketbay.global.response.code.SuccessCode;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record ApiResponseBody<T, M>(

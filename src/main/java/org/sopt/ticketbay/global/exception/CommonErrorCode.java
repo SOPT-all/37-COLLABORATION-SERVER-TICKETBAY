@@ -1,11 +1,12 @@
-package org.sopt.ticketbay.global.response;
+package org.sopt.ticketbay.global.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.sopt.ticketbay.global.response.code.ErrorCode;
 
 @Getter
 @RequiredArgsConstructor
-public enum CommonErrorCode implements ErrorCode{
+public enum CommonErrorCode implements ErrorCode {
 
     // 400
     INVALID_MAPPING_PARAMETER(400, "COM_400_001", "매핑할 수 없는 값입니다."),
