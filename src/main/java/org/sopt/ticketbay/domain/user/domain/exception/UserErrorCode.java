@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.sopt.ticketbay.global.response.code.ErrorCode;
 
-@RequiredArgsConstructor
 @Getter
+@RequiredArgsConstructor
 public enum UserErrorCode implements ErrorCode {
 
     ;
