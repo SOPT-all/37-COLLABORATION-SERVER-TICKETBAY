@@ -1,0 +1,17 @@
+package org.sopt.ticketbay.domain.event.controller.message;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.sopt.ticketbay.global.response.code.SuccessCode;
+
+@Getter
+@RequiredArgsConstructor
+public enum EventSuccessCode implements SuccessCode {
+
+    ;
+
+    private final int status;
+    private final String code;
+    private final String message;
+
+}
