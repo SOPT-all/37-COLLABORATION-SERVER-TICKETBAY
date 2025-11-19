@@ -26,20 +26,23 @@ public class Event extends BaseEntity {
     @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     private String detailName;
 
+    @Column(nullable = false)
     private Instant eventDate;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private MainCategory mainCategory;
 
     @Column(length = 50)
     private String subCategory;
 
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     private String place;
 
+    @Column(nullable = false)
     private long viewCount = 0;
 
     private Event(
