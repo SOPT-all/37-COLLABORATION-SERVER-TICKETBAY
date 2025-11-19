@@ -1,10 +1,10 @@
 package org.sopt.ticketbay.domain.ticket.controller.dto.response;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketResult;
 
 public record TicketResponse(
-    Instant date,
+    LocalDateTime date,
     String detailName,
     int area,
     int seatColumn,

@@ -1,10 +1,10 @@
 package org.sopt.ticketbay.domain.ticket.service.dto.response;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import org.sopt.ticketbay.domain.ticket.domain.Ticket;
 
 public record TicketResult(
-    Instant date,
+    LocalDateTime date,
     String detailName,
     int area,
     int seatColumn,
@@ -16,7 +16,10 @@ public record TicketResult(
 
     public static TicketResult from(Ticket ticket) {
         return new TicketResult(
-            ticket.getEvent().getEventDate(),
+            LocalDateTime.ofInstant(
+                ticket.getEvent().getEventDate(),
+                java.time.ZoneId.of("Asia/Seoul")
+            ),
             ticket.getEvent().getDetailName(),
             ticket.getSeat().getArea(),
             ticket.getSeat().getSeatColumn(),
