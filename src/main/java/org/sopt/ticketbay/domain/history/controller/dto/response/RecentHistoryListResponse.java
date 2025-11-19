@@ -3,17 +3,9 @@ package org.sopt.ticketbay.domain.history.controller.dto.response;
 import java.util.List;
 
 public record RecentHistoryListResponse(
-        List<HistoryResponse> histories,
-        int page,
-        int size,
-        long totalElements,
-        int totalPages
+        List<HistoryResponse> histories
 ) {
-    public static RecentHistoryListResponse from(List<HistoryResponse> historyResponses,
-                                                 int page,
-                                                 int size,
-                                                 long totalElements,
-                                                 int totalPages) {
-        return new RecentHistoryListResponse(historyResponses, page, size, totalElements, totalPages);
+    public RecentHistoryListResponse(List<HistoryResponse> histories) {
+        this.histories = histories;
     }
 }
