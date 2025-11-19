@@ -2,6 +2,7 @@ package org.sopt.ticketbay.domain.seat.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import org.sopt.ticketbay.global.model.BaseEntity;
 public class Seat extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private int area;
