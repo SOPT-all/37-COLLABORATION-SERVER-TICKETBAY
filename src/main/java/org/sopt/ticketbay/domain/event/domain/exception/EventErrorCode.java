@@ -8,6 +8,8 @@ import org.sopt.ticketbay.global.response.code.ErrorCode;
 @RequiredArgsConstructor
 public enum EventErrorCode implements ErrorCode {
 
+    // 404
+    EVENT_NOT_FOUND(404, "EVE_404_001", "존재하지 않는 이벤트입니다."),
     ;
 
     private final int status;

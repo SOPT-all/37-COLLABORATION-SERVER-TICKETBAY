@@ -1,45 +1,32 @@
 package org.sopt.ticketbay.domain.ticket.service.dto.response;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import org.sopt.ticketbay.domain.ticket.domain.Ticket;
 
 public record TicketResult(
-    Long id,
-    Long productNumber,
-    String mainCategory,
-    String subCategory,
-    String name,
-    Instant date,
-    String place,
+    LocalDateTime date,
     String detailName,
     int area,
     int seatColumn,
     String seatType,
-    String seatImageUrl,
-    boolean status,
-    int pricePerTicket,
+    String seatPosition,
     int amount,
-    Instant createdAt
+    int price
 ) {
 
-    public static TicketResult of(Ticket ticket, String seatImageUrl) {
+    public static TicketResult from(Ticket ticket) {
         return new TicketResult(
-            ticket.getId(),
-            ticket.getProductNumber(),
-            ticket.getEvent().getMainCategory().toString(),
-            ticket.getEvent().getSubCategory(),
-            ticket.getEvent().getName(),
-            ticket.getEvent().getEventDate(),
-            ticket.getEvent().getPlace(),
+            LocalDateTime.ofInstant(
+                ticket.getEvent().getEventDate(),
+                java.time.ZoneId.of("Asia/Seoul")
+            ),
             ticket.getEvent().getDetailName(),
             ticket.getSeat().getArea(),
             ticket.getSeat().getSeatColumn(),
             ticket.getSeat().getSeatType(),
-            seatImageUrl,
-            ticket.isStatus(),
-            ticket.getPrice(),
+            ticket.getSeat().getPositionName(),
             ticket.getAmount(),
-            ticket.getCreatedAt()
+            ticket.getPrice()
         );
     }
 }
