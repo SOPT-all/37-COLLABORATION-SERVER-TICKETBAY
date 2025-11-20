@@ -13,8 +13,8 @@ public class UserValidator {
 
     private UserRepository userRepository;
 
-    public void validateUser(Long eventId) {
-        if (!userRepository.existsById(eventId)) {
+    public void validateUser(Long userId) {
+        if (!userRepository.existsById(userId)) {
             throw new UserException(USER_NOT_FOUND);
         }
     }
