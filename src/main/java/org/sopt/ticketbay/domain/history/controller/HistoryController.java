@@ -2,7 +2,7 @@ package org.sopt.ticketbay.domain.history.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.sopt.ticketbay.domain.history.controller.dto.response.HistoryResponse;
-import org.sopt.ticketbay.domain.history.controller.dto.response.RecentHistoryListResponse;
+import org.sopt.ticketbay.domain.history.controller.dto.response.HistoryListResponse;
 import org.sopt.ticketbay.domain.history.service.HistoryService;
 import org.sopt.ticketbay.domain.user.validator.UserValidator;
 import org.sopt.ticketbay.global.response.dto.ApiResponseBody;
@@ -26,7 +26,7 @@ public class HistoryController {
 
     // 최근 조회 내역 리스트 조회 API
     @GetMapping("/users/{userId}/recent")
-    public ResponseEntity<ApiResponseBody<RecentHistoryListResponse, Void>> getRecentHistories(
+    public ResponseEntity<ApiResponseBody<HistoryListResponse, Void>> getRecentHistories(
             @PathVariable Long userId
     ) {
         userValidator.validateUser(userId);
@@ -36,7 +36,7 @@ public class HistoryController {
                 .map(HistoryResponse::from)
                 .toList();
 
-        RecentHistoryListResponse response = new RecentHistoryListResponse(historyResponses);
+        HistoryListResponse response = new HistoryListResponse(historyResponses);
 
         return ResponseEntity.ok(ApiResponseBody.ok(HISTORY_LIST_RETRIEVED_SUCCESS, response));
     }
