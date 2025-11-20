@@ -24,7 +24,6 @@ public class HistoryController {
     private final HistoryService historyService;
     private final UserValidator userValidator;
 
-    // 최근 조회 내역 리스트 조회 API
     @GetMapping("/users/{userId}/recent")
     public ResponseEntity<ApiResponseBody<HistoryListResponse, Void>> getRecentHistories(
             @PathVariable Long userId
