@@ -9,7 +9,7 @@ import org.sopt.ticketbay.global.response.code.ErrorCode;
 public enum UserErrorCode implements ErrorCode {
 
     // 404 잘못된 요청
-    USER_NOT_FOUND(404, "USER_404_001", "존재하지 않는 유저입니다."),
+    USER_NOT_FOUND(404, "USE_404_001", "존재하지 않는 유저입니다."),
     ;
 
     private final int status;
