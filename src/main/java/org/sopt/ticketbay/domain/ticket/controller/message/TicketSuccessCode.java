@@ -8,6 +8,7 @@ import org.sopt.ticketbay.global.response.code.SuccessCode;
 @RequiredArgsConstructor
 public enum TicketSuccessCode implements SuccessCode {
 
+    TICKET_LIST_RETRIEVED_SUCCESS(200, "TIC_200_001", "성공적으로 티켓 목록을 조회했습니다."),
     ;
 
     private final int status;
