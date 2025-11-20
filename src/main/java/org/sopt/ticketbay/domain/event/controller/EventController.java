@@ -33,4 +33,4 @@ public class EventController {
         return ResponseEntity.ok(ApiResponseBody.ok(EVENT_TOP_LIST_RETRIEVED_SUCCESS, response));
     }
 }
-}
+
