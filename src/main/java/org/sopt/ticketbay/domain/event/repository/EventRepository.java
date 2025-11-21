@@ -1,8 +1,9 @@
 package org.sopt.ticketbay.domain.event.repository;
 
 import org.sopt.ticketbay.domain.event.domain.Event;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-public interface EventRepository extends JpaRepository<Event, Long> {
-
+public interface EventRepository {
+    Page<Event> findTopEventsByViewCount(Pageable pageable);
 }
