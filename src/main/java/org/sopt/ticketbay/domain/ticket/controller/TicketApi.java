@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Tag(name = "Ticket", description = "[뷰2, 뷰3] 티켓 관련 API")
+@Tag(name = "03 - Ticket", description = "[뷰2, 뷰3] 티켓 관련 API")
 public interface TicketApi {
 
     @Operation(summary = "[뷰2] 티켓 목록 조회", description = "지정된 행사와 연관된 티켓 목록을 조회합니다.")
