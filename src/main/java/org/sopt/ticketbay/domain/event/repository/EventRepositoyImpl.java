@@ -1,5 +1,7 @@
 package org.sopt.ticketbay.domain.event.repository;
 
+import static org.sopt.ticketbay.domain.event.domain.QEvent.event;
+
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.sopt.ticketbay.domain.event.domain.Event;
@@ -15,8 +17,6 @@ public class EventRepositoyImpl {
     private final JPAQueryFactory jpaQueryFactory;
 
     public Page<Event> findTopEventsByViewCount(Pageable pageable) {
-        QEvent event = QEvent.event;
-
         List<Event> events = jpaQueryFactory
                 .selectFrom(event)
                 .orderBy(event.viewCount.desc()) // 조회수 기준 높은 순
