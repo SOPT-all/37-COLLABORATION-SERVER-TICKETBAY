@@ -7,17 +7,13 @@ import java.time.Instant;
 public record EventResponse(
         Long id,
         String name,
-        String detailName,
-        Instant eventDate,
-        long viewCount
+        String place
 ) {
     public static EventResponse from(Event event) {
         return new EventResponse(
                 event.getId(),
                 event.getName(),
-                event.getDetailName(),
-                event.getEventDate(),
-                event.getViewCount()
+                event.getPlace()
         );
     }
 }
