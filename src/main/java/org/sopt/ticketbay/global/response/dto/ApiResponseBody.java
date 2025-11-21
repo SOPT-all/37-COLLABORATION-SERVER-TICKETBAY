@@ -1,7 +1,6 @@
 package org.sopt.ticketbay.global.response.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.sopt.ticketbay.global.response.code.ErrorCode;
 import org.sopt.ticketbay.global.response.code.SuccessCode;
@@ -18,46 +17,35 @@ public record ApiResponseBody<T, M>(
     @Schema(description = "해당 API의 결과에 대한 상태 메시지입니다.")
     String message,
 
-    @Schema(description = "해당 API에서 반환하는 결과 데이터입니다.")
-    T data,
-
     @Schema(description = "해당 API 관련 커스텀 코드입니다. 도메인(3글자)-상태코드-순번 으로 이루어져 있습니다.", example = "TIC_200_001")
     String code,
+
+    @Schema(description = "해당 API에서 반환하는 결과 데이터입니다.")
+    T data,
 
     @Schema(description = "해당 API의 data를 설명하는 meta data입니다. 페이지네이션 정보나, 에러 발생 시 에러 정보를 반환합니다.")
     M meta
 ) {
-
-    public static ApiResponseBody<Void, Void> ok(SuccessCode successCode) {
-        return new ApiResponseBody<>(
-            true,
-            successCode.getStatus(),
-            successCode.getMessage(),
-            null,
-            null,
-            null
-        );
-    }
 
     public static <T> ApiResponseBody<T, Void> ok(SuccessCode successCode, T data) {
         return new ApiResponseBody<>(
             true,
             successCode.getStatus(),
             successCode.getMessage(),
+            successCode.getCode(),
             data,
-            null,
             null
         );
     }
 
-    public static <T> ApiResponseBody<T, Void> created(SuccessCode successCode, T data) {
+    public static <T, M> ApiResponseBody<T, M> ok(SuccessCode successCode, T data, M meta) {
         return new ApiResponseBody<>(
             true,
             successCode.getStatus(),
             successCode.getMessage(),
+            successCode.getCode(),
             data,
-            null,
-            null
+            meta
         );
     }
 
@@ -69,8 +57,8 @@ public record ApiResponseBody<T, M>(
             false,
             errorCode.getStatus(),
             errorCode.getMessage(),
-            null,
             errorCode.getCode(),
+            null,
             errorMeta
         );
     }
@@ -84,14 +72,9 @@ public record ApiResponseBody<T, M>(
             false,
             errorCode.getStatus(),
             message,
-            null,
             errorCode.getCode(),
+            null,
             errorMeta
         );
-    }
-
-    @Override
-    public T data() {
-        return data;
     }
 }
