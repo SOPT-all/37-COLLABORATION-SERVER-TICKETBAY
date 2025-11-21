@@ -13,13 +13,11 @@ public class HistoryRepositoryImpl {
 
     private final JPAQueryFactory jpaQueryFactory;
 
-    public List<History> findAllByUserOrderByLastViewedAsc(Long userId) {
-        QHistory history = QHistory.history;
-
+    public List<History> findAllByUserOrderByLastViewedDesc(Long userId) {
         return jpaQueryFactory
                 .selectFrom(history)
                 .where(history.user.id.eq(userId))
-                .orderBy(history.lastViewedAt.asc()) // 최근 조회 -> 이전 조회
+                .orderBy(history.lastViewedAt.desc()) // 최근 조회 -> 이전 조회
                 .fetch();
     }
 

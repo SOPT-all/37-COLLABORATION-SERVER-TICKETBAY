@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface HistoryRepository extends JpaRepository<History, Long> {
 
-    List<History> findAllByUserOrderByLastViewedAsc(Long userId);
+    List<History> findAllByUserOrderByLastViewedDesc(Long userId);
 
 }

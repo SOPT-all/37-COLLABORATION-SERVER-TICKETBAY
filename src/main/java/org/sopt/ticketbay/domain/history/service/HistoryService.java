@@ -14,7 +14,7 @@ public class HistoryService {
     private HistoryRepository historyRepository;
 
     public List<History> getAllHistories(Long userId) {
-        return historyRepository.findAllByUserOrderByLastViewedAsc(userId);
+        return historyRepository.findAllByUserOrderByLastViewedDesc(userId);
     }
 
 }
