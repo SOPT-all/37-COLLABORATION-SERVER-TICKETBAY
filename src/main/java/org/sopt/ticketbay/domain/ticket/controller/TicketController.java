@@ -4,10 +4,14 @@ import static org.sopt.ticketbay.domain.ticket.controller.message.TicketSuccessC
 
 import java.time.LocalDate;
 import java.util.List;
+import static org.sopt.ticketbay.domain.ticket.controller.message.TicketSuccessCode.TICKET_DETAIL_RETRIEVED_SUCCESS;
+
 import lombok.RequiredArgsConstructor;
 import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketListResponse;
 import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketResponse;
+import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketDetailResponse;
 import org.sopt.ticketbay.domain.ticket.service.TicketService;
+import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketDetailResult;
 import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketResult;
 import org.sopt.ticketbay.global.response.dto.ApiResponseBody;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +42,16 @@ public class TicketController {
         );
 
         return ResponseEntity.ok(ApiResponseBody.ok(TICKET_LIST_RETRIEVED_SUCCESS, response));
+    }
+
+    @GetMapping("/tickets/{ticketId}")
+    public ResponseEntity<ApiResponseBody<TicketDetailResponse, Void>> getTicketDetail(
+        @PathVariable Long ticketId
+    ) {
+        TicketDetailResult ticketResult = ticketService.getTicketDetail(ticketId);
+        TicketDetailResponse resonse = TicketDetailResponse.from(ticketResult);
+
+        return ResponseEntity.ok(ApiResponseBody.ok(TICKET_DETAIL_RETRIEVED_SUCCESS, resonse));
     }
 
 }

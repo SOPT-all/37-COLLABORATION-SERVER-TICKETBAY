@@ -8,6 +8,8 @@ import org.sopt.ticketbay.global.response.code.ErrorCode;
 @RequiredArgsConstructor
 public enum TicketErrorCode implements ErrorCode {
 
+    // 404
+    TICKET_NOT_FOUND(404, "TIC_404_001", "해당 티켓을 찾을 수 없습니다."),
     ;
 
     private final int status;

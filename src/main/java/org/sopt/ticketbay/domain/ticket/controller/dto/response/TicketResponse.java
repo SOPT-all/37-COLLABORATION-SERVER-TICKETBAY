@@ -26,4 +26,3 @@ public record TicketResponse(
         );
     }
 }
-
