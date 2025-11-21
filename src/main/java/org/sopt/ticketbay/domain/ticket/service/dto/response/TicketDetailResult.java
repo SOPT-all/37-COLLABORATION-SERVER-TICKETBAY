@@ -1,7 +1,7 @@
 package org.sopt.ticketbay.domain.ticket.service.dto.response;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZoneId;
 import org.sopt.ticketbay.domain.ticket.domain.Ticket;
 
 public record TicketDetailResult(
@@ -24,7 +24,7 @@ public record TicketDetailResult(
             ticket.isStatus(),
             ticket.getPrice(),
             ticket.getAmount(),
-            LocalDateTime.ofInstant(ticket.getCreatedAt(), ZoneOffset.UTC)
+            LocalDateTime.ofInstant(ticket.getCreatedAt(), ZoneId.of("Asia/Seoul"))
         );
     }
 }
