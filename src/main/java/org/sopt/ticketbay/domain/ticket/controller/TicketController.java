@@ -11,6 +11,7 @@ import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketListRespon
 import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketResponse;
 import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketDetailResponse;
 import org.sopt.ticketbay.domain.ticket.service.TicketService;
+import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketDetailResult;
 import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketResult;
 import org.sopt.ticketbay.global.response.dto.ApiResponseBody;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +48,7 @@ public class TicketController {
     public ResponseEntity<ApiResponseBody<TicketDetailResponse, Void>> getTicketDetail(
         @PathVariable Long ticketId
     ) {
-        TicketResult ticketResult = ticketService.getTicketDetail(ticketId);
+        TicketDetailResult ticketResult = ticketService.getTicketDetail(ticketId);
         TicketDetailResponse resonse = TicketDetailResponse.from(ticketResult);
 
         return ResponseEntity.ok(ApiResponseBody.ok(TICKET_DETAIL_RETRIEVED_SUCCESS, resonse));

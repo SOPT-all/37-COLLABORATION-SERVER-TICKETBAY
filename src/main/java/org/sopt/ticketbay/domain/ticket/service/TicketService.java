@@ -10,10 +10,13 @@ import org.sopt.ticketbay.domain.ticket.domain.Ticket;
 import org.sopt.ticketbay.domain.ticket.domain.exception.TicketException;
 import org.sopt.ticketbay.domain.ticket.repository.TicketCustomRepository;
 import org.sopt.ticketbay.domain.ticket.repository.TicketRepository;
+import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketDetailResult;
 import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketResult;
 import org.sopt.ticketbay.global.s3.S3Service;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class TicketService {
@@ -21,6 +24,7 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     private final TicketCustomRepository ticketCustomRepository;
     private final EventValidator eventValidator;
+    private final S3Service s3Service;
 
     public List<TicketResult> getTickets(Long eventId, LocalDate date) {
         eventValidator.validateEvent(eventId);
@@ -30,14 +34,13 @@ public class TicketService {
             .map(TicketResult::from)
             .toList();
     }
-    private final S3Service s3Service;
 
-    public TicketResult getTicketDetail(Long ticketId) {
+    public TicketDetailResult getTicketDetail(Long ticketId) {
         Ticket ticket = ticketRepository.findById(ticketId)
             .orElseThrow(() -> new TicketException(TICKET_NOT_FOUND));
         String imageUrl = s3Service.generatePresignedUrl(ticket.getSeat().getImageKey());
 
-        return TicketResult.of(ticket, imageUrl);
+        return TicketDetailResult.from(ticket, imageUrl);
     }
 
 }
