@@ -19,10 +19,11 @@ import static org.sopt.ticketbay.domain.event.controller.message.EventSuccessCod
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @RestController
-public class EventController {
+public class EventController implements EventApi {
 
     private final EventService eventService;
 
+    @Override
     @GetMapping("/events/top")
     public ResponseEntity<ApiResponseBody<EventListResponse, EventPageMetaResponse>> getTopEvents(
             @RequestParam(defaultValue = "0") int page,
