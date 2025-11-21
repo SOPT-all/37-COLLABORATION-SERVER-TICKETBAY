@@ -21,7 +21,7 @@ public class EventController {
 
     private final EventService eventService;
 
-    @GetMapping("event/top")
+    @GetMapping("/events/top")
     public ResponseEntity<ApiResponseBody<EventListResponse, Void>> getTopEvents(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
