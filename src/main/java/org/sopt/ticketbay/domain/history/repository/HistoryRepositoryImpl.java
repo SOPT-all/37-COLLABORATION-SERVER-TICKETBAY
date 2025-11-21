@@ -1,5 +1,7 @@
 package org.sopt.ticketbay.domain.history.repository;
 
+import static org.sopt.ticketbay.domain.ticket.domain.QHistory.history;
+
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.sopt.ticketbay.domain.history.domain.History;
