@@ -7,6 +7,8 @@ import org.sopt.ticketbay.global.response.code.SuccessCode;
 @Getter
 @RequiredArgsConstructor
 public enum EventSuccessCode implements SuccessCode {
+
+    // 200 OK
     EVENT_TOP_LIST_RETRIEVED_SUCCESS(200, "EVN_200_001", "성공적으로 인기 이벤트 랭킹 목록을 조회했습니다.")
 
     ;

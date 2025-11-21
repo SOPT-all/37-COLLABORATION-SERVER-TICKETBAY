@@ -11,7 +11,7 @@ import static org.sopt.ticketbay.domain.user.domain.exception.UserErrorCode.USER
 @Component
 public class UserValidator {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public void validateUser(Long userId) {
         if (!userRepository.existsById(userId)) {

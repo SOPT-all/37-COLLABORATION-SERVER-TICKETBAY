@@ -3,6 +3,7 @@ package org.sopt.ticketbay.domain.event.repository;
 import static org.sopt.ticketbay.domain.event.domain.QEvent.event;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.sopt.ticketbay.domain.event.domain.Event;
 import org.springframework.data.domain.Page;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class EventRepositoryImpl {
+public class EventCustomRepositoryImpl implements EventCustomRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 

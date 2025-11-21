@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import org.sopt.ticketbay.domain.ticket.domain.Ticket;
 
 public record TicketResult(
+    Long id,
     LocalDateTime date,
     String detailName,
     int area,
@@ -16,6 +17,7 @@ public record TicketResult(
 
     public static TicketResult from(Ticket ticket) {
         return new TicketResult(
+            ticket.getId(),
             LocalDateTime.ofInstant(
                 ticket.getEvent().getEventDate(),
                 java.time.ZoneId.of("Asia/Seoul")

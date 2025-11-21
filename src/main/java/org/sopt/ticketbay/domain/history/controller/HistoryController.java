@@ -18,18 +18,19 @@ import static org.sopt.ticketbay.domain.history.controller.message.HistorySucces
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @RestController
-public class HistoryController {
+public class HistoryController implements HistoryApi {
 
     private final HistoryService historyService;
 
+    @Override
     @GetMapping("/users/{userId}/recent")
     public ResponseEntity<ApiResponseBody<HistoryListResponse, Void>> getRecentHistories(
-            @PathVariable Long userId
+        @PathVariable Long userId
     ) {
         List<HistoryResponse> historyResponses = historyService.getAllHistories(userId)
-                .stream()
-                .map(HistoryResponse::from)
-                .toList();
+            .stream()
+            .map(HistoryResponse::from)
+            .toList();
 
         HistoryListResponse response = new HistoryListResponse(historyResponses);
 

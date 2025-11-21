@@ -1,6 +1,6 @@
 package org.sopt.ticketbay.domain.history.repository;
 
-import static org.sopt.ticketbay.domain.ticket.domain.QHistory.history;
+import static org.sopt.ticketbay.domain.history.domain.QHistory.history;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
-public class HistoryRepositoryImpl {
+public class HistoryCustomRepositoryImpl implements HistoryCustomRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
