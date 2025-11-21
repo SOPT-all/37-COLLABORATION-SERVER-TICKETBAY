@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import org.sopt.ticketbay.domain.ticket.service.dto.response.EventInfo;
 
 public record EventResponse(
+    Long id,
     String mainCategory,
     String subCategory,
     String name,
@@ -14,6 +15,7 @@ public record EventResponse(
 
     public static EventResponse from(EventInfo eventInfo) {
         return new EventResponse(
+            eventInfo.id(),
             eventInfo.mainCategory(),
             eventInfo.subCategory(),
             eventInfo.name(),

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketResult;
 
 public record TicketResponse(
+    Long id,
     LocalDateTime date,
     String detailName,
     int area,
@@ -13,8 +14,10 @@ public record TicketResponse(
     int amount,
     int price
 ) {
+
     public static TicketResponse from(TicketResult result) {
         return new TicketResponse(
+            result.id(),
             result.date(),
             result.detailName(),
             result.area(),
