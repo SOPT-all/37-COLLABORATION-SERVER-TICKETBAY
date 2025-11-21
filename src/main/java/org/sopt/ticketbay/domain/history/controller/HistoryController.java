@@ -1,10 +1,9 @@
 package org.sopt.ticketbay.domain.history.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.ticketbay.domain.history.controller.dto.response.HistoryResponse;
 import org.sopt.ticketbay.domain.history.controller.dto.response.HistoryListResponse;
+import org.sopt.ticketbay.domain.history.controller.dto.response.HistoryResponse;
 import org.sopt.ticketbay.domain.history.service.HistoryService;
-import org.sopt.ticketbay.domain.user.validator.UserValidator;
 import org.sopt.ticketbay.global.response.dto.ApiResponseBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +21,11 @@ import static org.sopt.ticketbay.domain.history.controller.message.HistorySucces
 public class HistoryController {
 
     private final HistoryService historyService;
-    private final UserValidator userValidator;
 
     @GetMapping("/users/{userId}/recent")
     public ResponseEntity<ApiResponseBody<HistoryListResponse, Void>> getRecentHistories(
             @PathVariable Long userId
     ) {
-        userValidator.validateUser(userId);
-
         List<HistoryResponse> historyResponses = historyService.getAllHistories(userId)
                 .stream()
                 .map(HistoryResponse::from)
