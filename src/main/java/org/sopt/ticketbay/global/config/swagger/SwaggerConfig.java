@@ -1,9 +1,10 @@
 package org.sopt.ticketbay.global.config.swagger;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.servers.Server;
+import io.swagger.v3.oas.annotations.servers.Server;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -12,9 +13,16 @@ import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+@OpenAPIDefinition(
+    servers = {
+        @Server(url="https://api.serverzzz.p-e.kr", description = "배포 서버 주소"),
+        @Server(url="http://localhost:8080", description = "로컬 서버 주소")
+    }
+)
 @Configuration
 public class SwaggerConfig {
 
+    private static final String PROD_ORIGIN = "https://api.serverzzz.p-e.kr";
     private static final String LOCAL_ORIGIN = "http://localhost:8080";
 
     @Bean
@@ -72,8 +80,19 @@ public class SwaggerConfig {
 
             openApi.setPaths(rewritten);
 
-            List<Server> servers = new ArrayList<>();
-            servers.add(new Server().url(LOCAL_ORIGIN + fullPrefix).description("Local"));
+            List<io.swagger.v3.oas.models.servers.Server> servers = new ArrayList<>();
+
+            servers.add(
+                new io.swagger.v3.oas.models.servers.Server()
+                    .url(PROD_ORIGIN + fullPrefix)
+                    .description("Prod")
+            );
+            servers.add(
+                new io.swagger.v3.oas.models.servers.Server()
+                    .url(LOCAL_ORIGIN + fullPrefix)
+                    .description("Local")
+            );
+
             openApi.setServers(servers);
         };
     }
