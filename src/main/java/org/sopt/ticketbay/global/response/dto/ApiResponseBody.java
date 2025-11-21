@@ -6,6 +6,7 @@ import org.sopt.ticketbay.global.response.code.ErrorCode;
 import org.sopt.ticketbay.global.response.code.SuccessCode;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Schema(description = "공통 응답 DTO")
 public record ApiResponseBody<T, M>(
 
     @Schema(description = "해당 API의 성공 여부를 반환합니다. true면 성공, false면 실패입니다.")
