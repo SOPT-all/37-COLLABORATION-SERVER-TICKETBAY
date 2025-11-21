@@ -5,7 +5,5 @@ import java.util.List;
 public record HistoryListResponse(
         List<HistoryResponse> histories
 ) {
-    public HistoryListResponse(List<HistoryResponse> histories) {
-        this.histories = histories;
-    }
+
 }

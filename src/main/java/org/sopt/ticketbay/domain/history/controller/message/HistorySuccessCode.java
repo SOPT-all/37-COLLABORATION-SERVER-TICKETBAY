@@ -8,6 +8,7 @@ import org.sopt.ticketbay.global.response.code.SuccessCode;
 @RequiredArgsConstructor
 public enum HistorySuccessCode implements SuccessCode {
 
+    // 200 OK
     HISTORY_LIST_RETRIEVED_SUCCESS(200, "HIS_200_001", "성공적으로 최근 조회 목록을 조회했습니다.")
 
     ;

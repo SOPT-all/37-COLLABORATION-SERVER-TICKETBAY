@@ -9,6 +9,7 @@ public record HistoryResponse(
         String name,
         Instant lastViewedAt
 ) {
+
     public static HistoryResponse from(History history) {
         return new HistoryResponse(
                 history.getEvent().getId(),

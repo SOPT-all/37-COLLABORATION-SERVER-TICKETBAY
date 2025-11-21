@@ -9,6 +9,7 @@ public record EventResponse(
         String name,
         String place
 ) {
+
     public static EventResponse from(Event event) {
         return new EventResponse(
                 event.getId(),
