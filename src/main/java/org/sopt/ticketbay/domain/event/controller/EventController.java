@@ -2,6 +2,8 @@ package org.sopt.ticketbay.domain.event.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.sopt.ticketbay.domain.event.controller.dto.response.EventListResponse;
+import org.sopt.ticketbay.domain.event.controller.dto.response.EventPageMetaResponse;
+import org.sopt.ticketbay.domain.event.controller.dto.response.EventResponse;
 import org.sopt.ticketbay.domain.event.domain.Event;
 import org.sopt.ticketbay.domain.event.service.EventService;
 import org.sopt.ticketbay.global.response.dto.ApiResponseBody;
@@ -22,15 +24,20 @@ public class EventController {
     private final EventService eventService;
 
     @GetMapping("/events/top")
-    public ResponseEntity<ApiResponseBody<EventListResponse, Void>> getTopEvents(
+    public ResponseEntity<ApiResponseBody<EventListResponse, EventPageMetaResponse>> getTopEvents(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        Page<Event> topEventsPage = eventService.getTopEvents(page, size);
+        Page<Event> pageData = eventService.getTopEvents(page, size);
 
-        EventListResponse response = EventListResponse.fromPage(topEventsPage);
+        EventListResponse data = EventListResponse.from(
+            pageData.stream().map(EventResponse::from).toList()
+        );
+        EventPageMetaResponse meta = EventPageMetaResponse.from(pageData);
 
-        return ResponseEntity.ok(ApiResponseBody.ok(EVENT_TOP_LIST_RETRIEVED_SUCCESS, response));
+        return ResponseEntity.ok(
+            ApiResponseBody.ok(EVENT_TOP_LIST_RETRIEVED_SUCCESS, data, meta)
+        );
     }
 }
 
