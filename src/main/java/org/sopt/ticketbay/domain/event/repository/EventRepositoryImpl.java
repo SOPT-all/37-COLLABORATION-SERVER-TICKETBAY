@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class EventRepositoyImpl {
+public class EventRepositoryImpl {
 
     private final JPAQueryFactory jpaQueryFactory;
 
