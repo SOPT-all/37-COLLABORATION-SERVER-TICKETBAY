@@ -1,7 +1,9 @@
-package org.sopt.ticketbay.domain.ticket.controller.message;
+package org.sopt.ticketbay.domain.ticket.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.time.LocalDate;
 import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketDetailResponse;
@@ -15,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface TicketApi {
 
     @Operation(summary = "[뷰2] 티켓 목록 조회", description = "지정된 행사와 연관된 티켓 목록을 조회합니다.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "티켓 목록 조회 성공"),
+        @ApiResponse(responseCode = "404", description = "해당 이벤트 ID가 없어 티켓 목록 조회 실패")
+    })
     ResponseEntity<ApiResponseBody<TicketListResponse, Void>> getTicketList(
         @Parameter(description = "조회할 이벤트 ID", example = "1", required = true)
         @PathVariable Long eventId,
@@ -24,8 +30,12 @@ public interface TicketApi {
     );
 
     @Operation(summary = "[뷰3] 티켓 상세 조회", description = "해당 티켓의 상세 정보를 조회합니다.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "티켓 상세 조회 성공"),
+        @ApiResponse(responseCode = "404", description = "해당 티켓 ID가 없어 티켓 상세 조회 실패")
+    })
     ResponseEntity<ApiResponseBody<TicketDetailResponse, Void>> getTicketDetail(
-        @Parameter( description = "조회할 티켓 ID", example = "1", required = true)
+        @Parameter(description = "조회할 티켓 ID", example = "1", required = true)
         @PathVariable Long ticketId
     );
 

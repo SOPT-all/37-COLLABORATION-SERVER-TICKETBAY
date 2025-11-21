@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketListResponse;
 import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketResponse;
 import org.sopt.ticketbay.domain.ticket.controller.dto.response.TicketDetailResponse;
-import org.sopt.ticketbay.domain.ticket.controller.message.TicketApi;
 import org.sopt.ticketbay.domain.ticket.service.TicketService;
 import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketDetailResult;
 import org.sopt.ticketbay.domain.ticket.service.dto.response.TicketResult;
