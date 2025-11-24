@@ -1,9 +1,8 @@
 package org.sopt.ticketbay.domain.event.controller.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.sopt.ticketbay.domain.event.domain.Event;
 
-import java.time.Instant;
+import org.sopt.ticketbay.domain.event.service.dto.response.EventResult;
 
 @Schema(description = "해당 티켓(행사) DTO")
 public record EventResponse(
@@ -15,14 +14,18 @@ public record EventResponse(
     String name,
 
     @Schema(description = "행사 장소", example = "한화생명볼파크")
-    String place
+    String place,
+
+    @Schema(description = "1위 ~ 5위 여부", example = "true")
+    boolean isTopRankng
 ) {
 
-    public static EventResponse from(Event event) {
+    public static EventResponse from(EventResult event) {
         return new EventResponse(
-            event.getId(),
-            event.getName(),
-            event.getPlace()
+            event.id(),
+            event.name(),
+            event.place(),
+            event.isTopRanking()
         );
     }
 }

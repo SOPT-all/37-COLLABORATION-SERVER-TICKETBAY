@@ -1,8 +1,7 @@
 package org.sopt.ticketbay.domain.event.controller.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.sopt.ticketbay.domain.event.domain.Event;
-import org.springframework.data.domain.Page;
+import org.sopt.ticketbay.domain.event.service.dto.response.EventListResult;
 
 @Schema(description = "베스트 인기티켓 목록 조회 시 페이지네이션 DTO")
 public record EventPageMetaResponse(
@@ -20,12 +19,12 @@ public record EventPageMetaResponse(
     int totalPages
 ) {
 
-    public static EventPageMetaResponse from(Page<Event> pageData) {
+    public static EventPageMetaResponse from(EventListResult pageData) {
         return new EventPageMetaResponse(
-            pageData.getNumber(),
-            pageData.getSize(),
-            pageData.getTotalElements(),
-            pageData.getTotalPages()
+            pageData.page(),
+            pageData.size(),
+            pageData.totalElements(),
+            pageData.totalPages()
         );
     }
 }
