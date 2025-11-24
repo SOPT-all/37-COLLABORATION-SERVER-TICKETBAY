@@ -12,6 +12,7 @@ import org.sopt.ticketbay.domain.history.domain.History;
 import org.sopt.ticketbay.domain.history.repository.HistoryCustomRepository;
 import org.sopt.ticketbay.domain.user.domain.User;
 import org.sopt.ticketbay.domain.user.validator.UserValidator;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Instant;
 import java.util.Arrays;
@@ -19,7 +20,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-
+@ActiveProfiles("test")
 class HistoryServiceTest {
 
     @Mock
