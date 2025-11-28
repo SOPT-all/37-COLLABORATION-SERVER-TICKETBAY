@@ -79,3 +79,7 @@ sourceSets {
 tasks.withType(JavaCompile).configureEach {
     options.annotationProcessorPath = configurations.annotationProcessor
 }
+
+bootJar {
+    mainClass = 'org.sopt.ticketbay.TicketbayApplication'
+}
