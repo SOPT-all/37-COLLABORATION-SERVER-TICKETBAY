@@ -12,4 +12,4 @@ if [ -n "$PID" ]; then
 fi
 
 # 새 버전 실행 (환경변수 적용시키는 것 포함)
-nohup java -jar *.jar --spring.profiles.active=$SPRING_PROFILES_ACTIVE > app.log 2>&1 &
+nohup java -jar ticketbay-0.0.1-SNAPSHOT.jar --spring.profiles.active=$SPRING_PROFILES_ACTIVE > app.log 2>&1 &

@@ -27,7 +27,7 @@ jobs:
 
       # 4. Gradle 빌드
       - name: Build with Gradle
-        run: ./gradlew clean build -x test
+        run: ./gradlew clean bootJar -x test
 
       # 5. AWS Credentials 설정 (AWS CLI 연동용)
       - name: Configure AWS Credentials
