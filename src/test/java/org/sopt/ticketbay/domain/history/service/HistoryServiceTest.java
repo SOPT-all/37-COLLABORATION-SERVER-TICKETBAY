@@ -78,7 +78,8 @@ class HistoryServiceTest {
         verify(userValidator, times(1)).validateUser(userId);
         verify(historyRepository, times(1)).findAllByUserOrderByLastViewedDesc(userId);
 
-        assertEquals(2, result.size());
+        assertEquals(h1, result.get(0));
+        assertEquals(h2, result.get(1));
         assertEquals(histories, result);
     }
 }
