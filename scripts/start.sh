@@ -2,6 +2,9 @@
 
 cd /home/ubuntu/ticketbay
 
+# 환경변수 불러오기
+source env.list
+
 # env.list 파일 불러오기 (GitHub Actions에서 받아온 Secrets값들)
 if [ -f ./env.list ]; then
   export $(cat ./env.list | xargs)
