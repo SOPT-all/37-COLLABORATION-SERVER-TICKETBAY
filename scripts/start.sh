@@ -3,7 +3,9 @@
 cd /home/ubuntu/ticketbay
 
 # env.list 파일 불러오기 (GitHub Actions에서 받아온 Secrets값들)
-export $(cat env.list | xargs)
+if [ -f ./env.list ]; then
+  export $(cat ./env.list | xargs)
+fi
 
 # 기존 프로세스 종료
 PID=$(lsof -ti :8080)
