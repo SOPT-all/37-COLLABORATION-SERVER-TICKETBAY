@@ -29,9 +29,13 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build -x test
 
-      # 5. AWS CLI 설치
-      - name: Install AWS CLI
-        uses: aws-actions/setup-aws-cli@v2
+      # 5. AWS Credentials 설정 (AWS CLI 연동용)
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       # 6. deploy 패키지 준비 (ZIP 생성)
       - name: Prepare deploy package
