@@ -42,6 +42,15 @@ jobs:
           cp build/libs/*.jar deploy/
           cd deploy && zip -r deploy.zip .
 
+      # 7. 환경변수 GitHub Secrets → 서버로 전달
+      - name: Export environment variables
+        run: |
+          echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY_ID }}" >> deploy/env.list
+          echo "AWS_SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> deploy/env.list
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> deploy/env.list
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> deploy/env.list
+          echo "SPRING_PROFILES_ACTIVE=prod" >> deploy/env.list
+
       # 7. S3 업로드 및 CodeDeploy 배포
       - name: Upload to S3 and Deploy
         env:
@@ -51,6 +60,7 @@ jobs:
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
           CODEDEPLOY_APP_NAME: ${{ secrets.CODEDEPLOY_APP_NAME }}
           DEPLOYMENT_GROUP_NAME: ${{ secrets.DEPLOYMENT_GROUP_NAME }}
+
         run: |
           # S3에 ZIP 업로드
           aws s3 cp deploy/deploy.zip s3://$S3_BUCKET_NAME/deploy.zip
